@@ -37,17 +37,7 @@ class ArticlesController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$request->validate([
-			'title'        => 'required|min:3|max:255',
-			'description'  => 'required',
-			'published_at' => 'required'
-		]);
-
-		$article                = new Article();
-		$article->title         = $request->title; // dd(request()->title);
-		$article->description   = $request->description; // dd(request()->description);
-		$article->published_at  = $request->published_at; // dd(request()->published_at);
-		$article->save();
+		Article::create($this->validateArticle($request));
 
 		return redirect()->route('articles.index'); // redirect()->action('ArticlesController@index'); (redirect using an action)
 	}
@@ -83,16 +73,7 @@ class ArticlesController extends Controller
 	 */
 	public function update(Request $request, Article $article)
 	{
-		$request->validate([
-			'title'        => 'required|min:3|max:255',
-			'description'  => 'required',
-			'published_at' => 'required'
-		]);
-
-		$article->title        = $request->title;
-		$article->description  = $request->description;
-		$article->published_at = $request->published_at;
-		$article->save();
+		$article->update($this->validateArticle($request));
 
 		return redirect()->route('articles.show', ['article' => $article->id]);
 	}
@@ -106,5 +87,20 @@ class ArticlesController extends Controller
 	public function destroy($id)
 	{
 		//
+	}
+
+	/**
+	 * validateArticle
+	 *
+	 * @param Request $request
+	 * @return array validated attributes
+	 */
+	protected function validateArticle(Request $request)
+	{
+		return $request->validate([
+			'title'        => 'required|min:3|max:255',
+			'description'  => 'required',
+			'published_at' => 'required'
+		]);
 	}
 }

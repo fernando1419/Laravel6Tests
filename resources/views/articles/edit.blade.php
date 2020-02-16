@@ -28,7 +28,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary form-control-sm">Update</button>
-                <a href="{{ route('articles.show', ['article' => $article->id]) }} " class="btn btn-warning form-control-sm">Cancel</a>
+                <a href="{{ route('articles.show', $article) }} " class="btn btn-warning form-control-sm">Cancel</a>
 
             </form>
 
