@@ -13,3 +13,4 @@ yarn-error.log
 
 # custom ignores:
 InstalarNuevoProyectoLaravel_UsandoDocker*.txt
+/.vscode
