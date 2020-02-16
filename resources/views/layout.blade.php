@@ -10,7 +10,12 @@
 <body>
     <div class="container-fluid">
         <!-- Main content -->
-        <h2> NavBarPlaceholder </h2>
+        <!--Navbar-->
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="nav-item nav-link" href="{{ route('articles.index') }} "> List Articles</a>
+        </nav>
+        <!--/.Navbar-->
+
         <div class="content">
             @yield('content')
         </div>

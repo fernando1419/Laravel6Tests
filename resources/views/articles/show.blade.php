@@ -5,7 +5,7 @@
     <div class="card-columns">
         <div class="card">
             <div class="card-header bg-info">
-                <h4 class="card-title"> {{ $article->title }} </h4>
+                <h5 class="card-title"> {{ $article->title }} </h5>
             </div>
             <div class="card-body">
                 <p class="card-text"> Published: {{ $article->published_at }} </p>
