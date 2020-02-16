@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('/js/app.js') }} "></script>
     <title>Testing Laravel 6 with GraphQL and LightHouse</title>
     @yield('header')
 </head>
@@ -21,5 +20,7 @@
             @yield('footer')
         </div>
     </div>
+
+    <script src="{{ mix('/js/app.js') }} "></script>
 </body>
 </html>

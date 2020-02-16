@@ -1,14 +1,13 @@
 @extends('layout')
 
 @section('content')
-    <h3>
-        Fancy display heading
-        <small class="text-muted">With faded secondary text</small>
-    </h3>
-<ul>
-        @foreach ($articles as $article )
+    <h3> List of Articles </h3>
+    <ul>
+        @forelse ($articles as $article)
             <li> {{ $article->title }} </li>
-        @endforeach
+        @empty
+            <p> No Articles to display yet. </p>
+        @endforelse
     </ul>
 @endsection
 
