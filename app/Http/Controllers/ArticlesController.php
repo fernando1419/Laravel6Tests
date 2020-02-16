@@ -62,24 +62,28 @@ class ArticlesController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Article $article
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id)
+	public function edit(Article $article)
 	{
-		//
+		return view('articles.edit', compact('article'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
+	 * @param  Article $article
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id)
+	public function update(Request $request, Article $article)
 	{
-		//
+		$article->title       = $request->title;
+		$article->description = $request->description;
+		$article->save();
+
+		return redirect()->route('articles.show', ['article' => $article->id]);
 	}
 
 	/**

@@ -11,6 +11,9 @@
                 <p class="card-text"> Published: {{ $article->published_at }} </p>
                 <p class="card-text"> {{ $article->description }} </p>
             </div>
+            <div class="card-footer">
+                <a href="{{ route('articles.edit', ['article' => $article->id]) }}">Edit this article</a>
+            </div>
         </div>
     </div>
 
