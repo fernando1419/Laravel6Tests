@@ -22,6 +22,11 @@
                     <textarea class="form-control form-control-sm" name="description" rows="3" placeholder="Description" required="required"></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label for="published_at">Published Date</label>
+                    <input type="date" class="form-control form-control-sm" required="required" name="published_at" max="{{ date('Y-m-d') }}">
+                </div>
+
                 <button type="submit" class="btn btn-primary form-control-sm">Create Article</button>
 
             </form>

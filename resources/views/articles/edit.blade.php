@@ -14,12 +14,17 @@
 
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control form-control-sm" name="title" placeholder="title" required="required" value={{ $article->title }}>
+                    <input type="text" class="form-control form-control-sm" name="title" placeholder="title" required="required" value="{{ $article->title }}">
                 </div>
 
                  <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control form-control-sm" name="description" rows="3" placeholder="Description" required="required">{{ $article->title }}</textarea>
+                    <textarea class="form-control form-control-sm" name="description" rows="3" placeholder="Description" required="required">{{ $article->description }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="published_at">Published Date</label>
+                    <input type="date" class="form-control form-control-sm" required="required" name="published_at" max="{{ date('Y-m-d') }}" value="{{ $article->published_at }}">
                 </div>
 
                 <button type="submit" class="btn btn-primary form-control-sm">Update</button>

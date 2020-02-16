@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
@@ -39,10 +38,10 @@ class ArticlesController extends Controller
 	public function store(Request $request)
 	{
 		// TODO: validate the form request data
-		$article               = new Article();
-		$article->title        = $request->title; // dd(request()->title);
-		$article->description  = $request->description; // dd(request()->description);
-		$article->published_at = Carbon::now();
+		$article                = new Article();
+		$article->title         = $request->title; // dd(request()->title);
+		$article->description   = $request->description; // dd(request()->description);
+		$article->published_at  = $request->published_at; // dd(request()->published_at);
 		$article->save();
 
 		return redirect()->route('articles.index'); // redirect()->action('ArticlesController@index'); (redirect using an action)
@@ -79,8 +78,9 @@ class ArticlesController extends Controller
 	 */
 	public function update(Request $request, Article $article)
 	{
-		$article->title       = $request->title;
-		$article->description = $request->description;
+		$article->title        = $request->title;
+		$article->description  = $request->description;
+		$article->published_at = $request->published_at;
 		$article->save();
 
 		return redirect()->route('articles.show', ['article' => $article->id]);
