@@ -43,12 +43,12 @@ class ArticlesController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Article  $article (id of an article)
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id)
+	public function show(Article $article)
 	{
-		//
+		return view('articles.show', ['article' => $article]);
 	}
 
 	/**

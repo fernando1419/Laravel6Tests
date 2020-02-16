@@ -7,4 +7,5 @@ Route::get('/', function ()
 	return view('layout');
 });
 
-Route::get('/articles', 'ArticlesController@index');
+Route::get('/articles', 'ArticlesController@index')->name('articles.index');
+Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
