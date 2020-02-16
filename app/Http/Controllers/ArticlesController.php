@@ -37,7 +37,12 @@ class ArticlesController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		// TODO: validate the form request data
+		$request->validate([
+			'title'        => 'required|min:3|max:255',
+			'description'  => 'required',
+			'published_at' => 'required'
+		]);
+
 		$article                = new Article();
 		$article->title         = $request->title; // dd(request()->title);
 		$article->description   = $request->description; // dd(request()->description);
@@ -78,6 +83,12 @@ class ArticlesController extends Controller
 	 */
 	public function update(Request $request, Article $article)
 	{
+		$request->validate([
+			'title'        => 'required|min:3|max:255',
+			'description'  => 'required',
+			'published_at' => 'required'
+		]);
+
 		$article->title        = $request->title;
 		$article->description  = $request->description;
 		$article->published_at = $request->published_at;
