@@ -13,6 +13,11 @@
             </div>
             <div class="card-footer">
                 <a href="{{ route('articles.edit', ['article' => $article->id]) }}">Edit this article</a>
+                <form method="POST" action="{{ route('articles.destroy', $article) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
     </div>
