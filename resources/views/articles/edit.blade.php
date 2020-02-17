@@ -12,22 +12,8 @@
                 @csrf
                 @method('PUT')
 
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control form-control-sm" name="title" placeholder="title" required value="{{ $article->title }}">
-                </div>
+                @include('articles._form', ['submitButtonText' => 'Update Article'])
 
-                 <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea class="form-control form-control-sm" name="description" rows="3" placeholder="Description">{{ $article->description }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="published_at">Published Date</label>
-                    <input type="date" class="form-control form-control-sm" required name="published_at" max="{{ date('Y-m-d') }}" value="{{ $article->published_at }}">
-                </div>
-
-                <button type="submit" class="btn btn-primary form-control-sm">Update</button>
                 <a href="{{ route('articles.show', $article) }} " class="btn btn-warning form-control-sm">Cancel</a>
 
             </form>
