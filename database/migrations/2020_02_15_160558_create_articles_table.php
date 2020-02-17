@@ -19,7 +19,14 @@ class CreateArticlesTable extends Migration
 			$table->string('title');
 			$table->text('description');
 			$table->timestamp('published_at')->nullable();
+			$table->unsignedBigInteger('author_id');
 			$table->timestamps();
+
+			$table->foreign('author_id')
+					->references('id')
+					->on('authors')
+					->onUpdate('cascade')
+					->onDelete('cascade');
 		});
 	}
 
