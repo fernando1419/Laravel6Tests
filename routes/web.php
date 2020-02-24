@@ -15,6 +15,8 @@ Route::get('/articles/{article}/edit', 'ArticlesController@edit')->name('article
 Route::put('/articles/{article}', 'ArticlesController@update')->name('articles.update');
 Route::delete('/articles/{article}', 'ArticlesController@destroy')->name('articles.destroy');
 
+Route::resource('tags', 'TagController');
+
 Route::get('/sancor', function ()
 {
 	// Sancor Webservice

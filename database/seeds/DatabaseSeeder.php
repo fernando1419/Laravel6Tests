@@ -13,9 +13,11 @@ class DatabaseSeeder extends Seeder
 	{
 		App\Author::truncate();
 		App\Article::truncate();
+		App\Tag::truncate();
 
 		// $this->call(UsersTableSeeder::class);
 		$this->call(AuthorsTableSeeder::class);
 		$this->call(ArticlesTableSeeder::class);
+		$this->call(TagsTableSeeder::class);
 	}
 }
