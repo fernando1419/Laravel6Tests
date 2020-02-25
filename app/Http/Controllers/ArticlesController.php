@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Article;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class ArticlesController extends Controller
 	 */
 	public function create()
 	{
-		return view('articles.create');
+		return view('articles.create', ['authors' => $this->getAuthors()]);
 	}
 
 	/**
@@ -50,7 +51,9 @@ class ArticlesController extends Controller
 	 */
 	public function show(Article $article)
 	{
-		return view('articles.show', ['article' => $article]);
+		$author = Author::findOrFail($article->author_id);
+
+		return view('articles.show', compact('article', 'author'));
 	}
 
 	/**
@@ -61,7 +64,9 @@ class ArticlesController extends Controller
 	 */
 	public function edit(Article $article)
 	{
-		return view('articles.edit', compact('article'));
+		$authors = $this->getAuthors();
+
+		return view('articles.edit', compact('article', 'authors'));
 	}
 
 	/**
@@ -102,7 +107,13 @@ class ArticlesController extends Controller
 		return $request->validate([
 			'title'        => 'required|min:3|max:255',
 			'description'  => 'required',
+			'author_id'    => 'required',
 			'published_at' => 'required'
 		]);
+	}
+
+	protected function getAuthors()
+	{
+		return Author::pluck('name', 'id');
 	}
 }

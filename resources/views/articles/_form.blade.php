@@ -10,11 +10,26 @@
     @enderror
 </div>
 
-    <div class="form-group">
+<div class="form-group">
     <label for="description">Description</label>
     <textarea class="form-control form-control-sm @error('description') is-invalid @enderror" name="description" rows="3" placeholder="Description">{{ old('description', $article->description ?? '') }}</textarea>
     @error('description')
         <p class="text-danger">{{ $errors->first('description') }} </p>
+    @enderror
+</div>
+
+<div class="form-group">
+    <label for="author_id">Author</label>
+    <select name="author_id" class="form-control form-control-sm">
+        <option value=""> Select an author... </option>
+        @foreach($authors as $id => $name)
+            <option value="{{ $id }}" {{ old('author_id', $article->author_id ?? "") == $id ? 'selected' : "" }} >
+                {{ $name }}
+            </option>
+        @endforeach
+    </select>
+    @error('author_id')
+        <p class="text-danger">{{ $errors->first('author_id') }} </p>
     @enderror
 </div>
 
