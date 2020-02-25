@@ -38,7 +38,7 @@
     <input class="form-control form-control-sm @error('published_at') is-invalid @enderror"
             type="date"
             name="published_at"
-            max="{{ date('Y-m-d') }}"
+            {{-- max="{{ date('Y-m-d') }}" --}}
             value="{{ old('published_at', $article->published_at ?? date('Y-m-d') ) }}" >
     @error('published_at')
         <p class="text-danger">{{ $errors->first('published_at') }} </p>

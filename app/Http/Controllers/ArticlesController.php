@@ -108,7 +108,7 @@ class ArticlesController extends Controller
 			'title'        => 'required|min:3|max:255',
 			'description'  => 'required',
 			'author_id'    => 'required',
-			'published_at' => 'required'
+			'published_at' => 'required|date|before_or_equal:today'
 		]);
 	}
 
