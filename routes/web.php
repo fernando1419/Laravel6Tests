@@ -16,6 +16,7 @@ Route::put('/articles/{article}', 'ArticlesController@update')->name('articles.u
 Route::delete('/articles/{article}', 'ArticlesController@destroy')->name('articles.destroy');
 
 Route::resource('tags', 'TagController');
+Route::resource('articles.tags', 'ArticleTagController');
 
 Route::get('/sancor', function ()
 {
