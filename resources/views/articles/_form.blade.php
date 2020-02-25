@@ -24,7 +24,7 @@
             type="date"
             name="published_at"
             max="{{ date('Y-m-d') }}"
-            value="{{ old('published_at', $article->published_at ?? '') }}" >
+            value="{{ old('published_at', $article->published_at ?? date('Y-m-d') ) }}" >
     @error('published_at')
         <p class="text-danger">{{ $errors->first('published_at') }} </p>
     @enderror
