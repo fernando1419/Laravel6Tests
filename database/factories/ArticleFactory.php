@@ -8,9 +8,9 @@ use Faker\Generator as Faker;
 $factory->define(Article::class, function (Faker $faker)
 {
 	return [
-		'title'          => $faker->sentence(4),
-		'description'    => $faker->text,
-		'published_at'   => $faker->dateTimeBetween($startDate = '-1 year', $endDate = 'now', $timezone = null),
-		'author_id'      => $faker->numberBetween(1, 50)
+		'title'        => $faker->sentence(4),
+		'description'  => $faker->text,
+		'published_at' => $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d'),
+		'author_id'    => $faker->numberBetween(1, 50)
 	];
 });
