@@ -42,3 +42,7 @@ Route::get('/zurich', function ()
 
 	dd($cliente->__getFunctions());
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
