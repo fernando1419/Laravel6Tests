@@ -5,7 +5,7 @@ services:
     php7-fpm:
         build:
             context: ../../docker-images-sources/php7-fpm
-        container_name: php-fpm
+        container_name: php-fpm-project6
         image: my-images/php73-fpm-alpine:0.1
         restart: always
         volumes:
@@ -19,7 +19,7 @@ services:
     nginx:
         build:
             context: ../../docker-images-sources/nginx
-        container_name: nginx
+        container_name: nginx-project6
         env_file: .env
         image: my-images/nginx117-alpine:0.1 ## Alpine Nginx 1.17
         volumes:
@@ -35,7 +35,7 @@ services:
     postgresql:
         build:
             context: ../../docker-images-sources/postgresql12
-        container_name: postgresql
+        container_name: postgresql-project6
         image: my-images/postgresql12-alpine:0.1
         environment:
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
