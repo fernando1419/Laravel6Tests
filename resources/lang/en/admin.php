@@ -65,5 +65,23 @@ return [
         ],
     ],
 
+    'author' => [
+        'title' => 'Authors',
+
+        'actions' => [
+            'index' => 'Authors',
+            'create' => 'New Author',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            'email' => 'Email',
+            'twitter' => 'Twitter',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 ];
