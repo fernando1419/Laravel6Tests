@@ -128,7 +128,8 @@ class ArticlesController extends Controller
 
 		return view('admin.article.edit', [
 			'article' => $article,
-			'authors' => Author::all(),
+            'authors' => Author::all(),
+            'selectedAuthor' => Author::findOrFail($article->author_id)
 		]);
 	}
 

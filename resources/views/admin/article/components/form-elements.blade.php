@@ -18,31 +18,22 @@
 </div>
 
 <div class="form-group row align-items-center"
-        :class="{'has-danger': errors.has('author'), 'has-success': fields.author_id && fields.author_id.valid }">
+        :class="{'has-danger': errors.has('author_id'), 'has-success': fields.author_id && fields.author_id.valid }">
     <label for="author_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.article.columns.author_id') }}</label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-
-        {{-- <option v-for="item in items"
-                value="@{{item.list}}"
-                :selected="item.list=={{json_encode($ads->city)}}?true : false">
-            @{{item.list}}
-        </option> --}}
-
-        {{-- @{{ selected }} --}}
-
+        {{-- @dd($selectedAuthor) --}}
         <multiselect
                      v-model="form.author"
                      :options="authors"
-                     {{-- :options="{{ $authors->map(function($author) { return ['id' => $author->id, 'value' =>  $author->name]; }) }}" --}}
-
-                     {{-- :selected="author_id == form.author.id" --}}
+                     :hide-selected="false"
                      label="name"
                      track-by="id"
                      tag-placeholder="{{ __('Select Author') }}"
                      placeholder="{{ __('Author') }}"
                      :multiple="false" >
         </multiselect>
-        <div v-if="errors.has('author')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('author') }} </div>
+        <pre>@{{ form.author }}</pre>
+        <div v-if="errors.has('author_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('author_id') }} </div>
     </div>
 </div>
 

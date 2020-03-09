@@ -11,9 +11,7 @@ Vue.component('article-form', {
                 published_at:  '' ,
                 // author_id:  '' ,
                 author: '',
-
             }
-        }
+       }
     }
-
 });

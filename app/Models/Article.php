@@ -17,7 +17,9 @@ class Article extends Model
 		'published_at',
 		'created_at',
 		'updated_at',
-	];
+    ];
+
+    protected $with = ['author'];
 
 	protected $appends = ['resource_url'];
 

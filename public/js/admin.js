@@ -112529,10 +112529,21 @@ Vue.component('article-form', {
         description: '',
         published_at: '',
         // author_id:  '' ,
-        author: ''
+        author: {
+          id: 5,
+          name: 'Trolo',
+          email: "tdaugherty@lakin.com",
+          twitter: "Provident voluptas hic numquam et repudiandae deserunt temporibus.",
+          created_at: "2020-03-05 19:04:45",
+          updated_at: "2020-03-05 19:04:45",
+          resource_url: "http://192.168.99.100:8900/admin/authors/5"
+        }
       }
     };
-  }
+  } // ,mounted() {
+  //     this.form.value = this.options.find(option => option.id == this.form.id);
+  // }
+
 });
 
 /***/ }),
