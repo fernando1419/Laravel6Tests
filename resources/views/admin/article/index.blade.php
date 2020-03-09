@@ -6,6 +6,7 @@
 
     <article-listing
         :data="{{ $data->toJson() }}"
+        :authors="{{ $authors->toJson() }}"
         :url="'{{ url('admin/articles') }}'"
         :trans="{{ json_encode(trans('brackets/admin-ui::admin.dialogs')) }}"
         inline-template>
@@ -29,15 +30,43 @@
                                             </span>
                                         </div>
                                     </div>
+
+                                    <div class="col form-group deadline-checkbox-col">
+                                        <div class="switch-filter-wrap">
+                                            <label class="switch switch-3d switch-primary">
+                                                <input type="checkbox" class="switch-input" v-model="showAuthorsFilter" >
+                                                <span class="switch-slider"></span>
+                                            </label>
+                                            <span class="authors-filter">&nbsp;{{ __('Authors filter') }}</span>
+                                        </div>
+                                    </div>
+
                                     <div class="col-sm-auto form-group ">
                                         <select class="form-control" v-model="pagination.state.per_page">
-                                            
+
                                             <option value="10">10</option>
                                             <option value="25">25</option>
                                             <option value="100">100</option>
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="row" v-if="showAuthorsFilter">
+                                    <div class="col-sm-auto form-group" style="margin-bottom: 0;">
+                                        <p style="line-height: 40px; margin:0;">{{ __('Select author/s') }}</p>
+                                    </div>
+                                    <div class="col col-lg-12 col-xl-12 form-group" style="max-width: 590px; ">
+                                        <multiselect v-model="authorsMultiselect"
+                                                     :options="{{ $authors->map(function($author) { return ['key' => $author->id, 'label' =>  $author->name]; })->toJson() }}"
+                                                     label="label"
+                                                     track-by="key"
+                                                     placeholder="{{ __('Type to search a author/s') }}"
+                                                     :limit="2"
+                                                     :multiple="true">
+                                        </multiselect>
+                                    </div>
+                                </div>
+
                             </form>
 
                             <table class="table table-hover table-listing">
@@ -77,13 +106,13 @@
                                             </label>
                                         </td>
 
-                                    <td>@{{ item.id }}</td>
+                                        <td>@{{ item.id }}</td>
                                         <td>@{{ item.title }}</td>
-                                            <td class="text-center text-nowrap">
+                                        <td class="text-center text-nowrap">
                                             <span v-if="item.published_at <= now">
                                                 @{{ item.published_at | datetime('DD.MM.YYYY, HH:mm') }}
                                             </span>
-                                                <span v-if="item.published_at > now">
+                                            <span v-if="item.published_at > now">
                                                 <small>{{ trans('admin.article.actions.will_be_published') }}</small><br />
                                                 @{{ item.published_at | datetime('DD.MM.YYYY, HH:mm') }}
                                                 <span class="cursor-pointer" @click="publishLater(item.resource_url, collection[index], 'publishLaterDialog')" title="{{ trans('brackets/admin-ui::admin.operation.publish_later') }}" role="button"><i class="fa fa-calendar"></i></span>
@@ -102,9 +131,13 @@
                                                 </form>
                                             </div>
                                         </td>
-                                        
-                                        <td>@{{ item.author_id }}</td>
-                                        
+
+                                        <td>@{{ item.author.name + " (" + item.author.email + ")" }}</td>
+                                        {{-- <td>
+                                            <user-detail-tooltip :author="item.author.name" v-if="item.author">
+                                            </user-detail-tooltip>
+                                        </td> --}}
+
                                         <td>
                                             <div class="row no-gutters">
                                                 <div class="col-auto">

@@ -112521,13 +112521,15 @@ __webpack_require__.r(__webpack_exports__);
 
 Vue.component('article-form', {
   mixins: [_app_components_Form_AppForm__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  props: ['authors'],
   data: function data() {
     return {
       form: {
         title: '',
         description: '',
         published_at: '',
-        author_id: ''
+        // author_id:  '' ,
+        author: ''
       }
     };
   }
@@ -112547,7 +112549,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_components_Listing_AppListing__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app-components/Listing/AppListing */ "./resources/js/admin/app-components/Listing/AppListing.js");
 
 Vue.component('article-listing', {
-  mixins: [_app_components_Listing_AppListing__WEBPACK_IMPORTED_MODULE_0__["default"]]
+  mixins: [_app_components_Listing_AppListing__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  data: function data() {
+    return {
+      showAuthorsFilter: false,
+      authorsMultiselect: {},
+      filters: {
+        authors: []
+      }
+    };
+  },
+  watch: {
+    showAuthorsFilter: function showAuthorsFilter(newVal, oldVal) {
+      this.authorsMultiselect = [];
+    },
+    authorsMultiselect: function authorsMultiselect(newVal, oldVal) {
+      this.filters.authors = newVal.map(function (object) {
+        return object['key'];
+      });
+      this.filter('authors', this.filters.authors);
+    }
+  }
 });
 
 /***/ }),

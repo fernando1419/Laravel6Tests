@@ -1,9 +1,10 @@
 <div class="card">
+
     <div class="card-header">
         <i class="fa fa-check"></i>{{ trans('brackets/admin-ui::admin.forms.publish') }}
     </div>
-    <div class="card-block">
 
+    <div class="card-block">
         <div class="form-group row align-items-center" :class="{'has-danger': errors.has('published_at'), 'has-success': fields.published_at && fields.published_at.valid }">
             <label for="published_at" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-2' : 'col-md-4'">{{ trans('admin.article.columns.published_at') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
@@ -15,6 +16,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 

@@ -1,66 +1,63 @@
 <?php
 
 return [
+	'request' => [
+		/*
+		 * Enable or disable request logger
+		 */
 
-    'request' => [
+		'enabled' => true,
 
-        /*
-         * Enable or disable request logger
-         */
+		/*
+		 * Array of handlers used for request logger
+		 */
 
-        'enabled' => true,
+		'handlers' => [
+			Brackets\AdvancedLogger\Handlers\RequestLoggerHandler::class
+		],
 
-        /*
-         * Array of handlers used for request logger
-         */
+		/*
+		 * Filename used for advanced logger
+		 */
 
-        'handlers' => [
-            Brackets\AdvancedLogger\Handlers\RequestLoggerHandler::class
-        ],
+		'file' => storage_path('logs/request.log'),
 
-        /*
-         * Filename used for advanced logger
-         */
+		/*
+		 * Log level to log requests
+		 */
 
-        'file' => storage_path('logs/request.log'),
+		'level' => 'info',
 
-        /*
-         * Log level to log requests
-         */
+		/*
+		 * Format of the log message, allowed values are:
+		 *
+		 * full - 'HTTP/{http-version} {status} | {remote-addr} | {user} | {method} {url} {query} | {response-time} s | {user-agent} | {referer}',
+		 * combined - '{remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length} "{referer}" "{user-agent}"',
+		 * common - '{remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length}',
+		 * dev - '{method} {url} {status} {response-time} s - {content-length}',
+		 * short - '{remote-addr} {remote-user} {method} {url} HTTP/{http-version} {status} {content-length} - {response-time} s',
+		 * tiny - '{method} {url} {status} {content-length} - {response-time} s'
+		 */
 
-        'level' => 'info',
+		'format' => 'full',
 
-        /*
-         * Format of the log message, allowed values are:
-         *
-         * full - 'HTTP/{http-version} {status} | {remote-addr} | {user} | {method} {url} {query} | {response-time} s | {user-agent} | {referer}',
-         * combined - '{remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length} "{referer}" "{user-agent}"',
-         * common - '{remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length}',
-         * dev - '{method} {url} {status} {response-time} s - {content-length}',
-         * short - '{remote-addr} {remote-user} {method} {url} HTTP/{http-version} {status} {content-length} - {response-time} s',
-         * tiny - '{method} {url} {status} {content-length} - {response-time} s'
-         */
+		/*
+		 * Url paths excluded from request logger
+		 */
 
-        'format' => 'full',
+		'excluded-paths' => [
+		],
 
-        /*
-         * Url paths excluded from request logger
-         */
+		/*
+		 * Queue used to process request logger
+		 */
 
-        'excluded-paths' => [
+		'queue' => null,
 
-        ],
+		/*
+		 * Benchmark name used for request log
+		 */
 
-        /*
-         * Queue used to process request logger
-         */
-        
-        'queue' => null,
-
-        /*
-         * Benchmark name used for request log
-         */
-
-        'benchmark' => 'application',
-    ],
+		'benchmark' => 'application',
+	],
 ];
