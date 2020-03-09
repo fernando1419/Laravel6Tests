@@ -42,11 +42,10 @@ class ArticlesController extends Controller
 			// set columns to searchIn
 			['id', 'title', 'description'],
 
-			// callback function to retrieve authors
+			// find authors
 			function ($query) use ($request)
 			{
 				$query->with(['author']);
-
 				if ($request->has('authors')) {
 					$query->whereIn('author_id', $request->get('authors'));
 				}
@@ -125,7 +124,6 @@ class ArticlesController extends Controller
 	 */
 	public function edit(Article $article)
 	{
-		// dd(Author::all());
 		$this->authorize('admin.article.edit', $article);
 
 		return view('admin.article.edit', [

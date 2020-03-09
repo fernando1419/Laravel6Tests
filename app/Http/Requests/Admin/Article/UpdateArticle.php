@@ -26,11 +26,18 @@ class UpdateArticle extends FormRequest
 	public function rules(): array
 	{
 		return [
+<<<<<<< Updated upstream
 			'title'         => ['required', 'string'],
 			'description'   => ['required', 'string'],
 			'published_at'  => ['nullable', 'date'],
 			// 'author_id'     => 'required',
 			'author'        => ['required'],
+=======
+			'title'         => ['sometimes', 'string'],
+			'description'   => ['sometimes', 'string'],
+			'published_at'  => ['nullable', 'date'],
+			'author_id'     => ['required'], // ['sometimes', 'string'],
+>>>>>>> Stashed changes
 			'publish_now'   => ['nullable', 'boolean'],
 			'unpublish_now' => ['nullable', 'boolean'],
 		];
@@ -54,16 +61,22 @@ class UpdateArticle extends FormRequest
 		}
 
 		//Add your code for manipulation with request data here
+<<<<<<< Updated upstream
 		$sanitized['author_id'] = $this->getAuthorId();
+=======
+>>>>>>> Stashed changes
 
 		return $sanitized;
 	}
 
+<<<<<<< Updated upstream
 	/**
 	 * getAuthorId
 	 *
 	 * @return void
 	 */
+=======
+>>>>>>> Stashed changes
 	public function getAuthorId()
 	{
 		if ($this->has('author')) {
