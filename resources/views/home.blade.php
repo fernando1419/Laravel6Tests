@@ -14,7 +14,13 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <h3>You are logged in!</h3>
+                    @if (@Auth::user()->hasRole('client'))
+                        <h3> Eres un usuario con el rol de Cliente </h3>
+                    @elseif (auth()->user()->hasRole('reader'))
+                        <h3> Eres un usuario con el rol de Lector </h3>
+                    @endif
+
                 </div>
             </div>
         </div>

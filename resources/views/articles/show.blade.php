@@ -12,8 +12,14 @@
                 <p class="card-text"> Published: {{ $article->published_at }} </p>
                 <p class="card-text"> {{ $article->description }} </p>
             </div>
+
             <div class="card-footer">
-                <a href="{{ route('articles.edit', ['article' => $article->id]) }}">Edit this article</a>
+                {{-- @if (@Auth::user()->hasPermissionTo('test.article.edit')) --}}
+                @can('test.article.index', $article)
+                    <a href="{{ route('articles.edit', ['article' => $article->id]) }}">Edit this article</a>
+                @endcan
+                {{-- @endif --}}
+
                 <form method="POST" action="{{ route('articles.destroy', $article) }}">
                     @csrf
                     @method('DELETE')
