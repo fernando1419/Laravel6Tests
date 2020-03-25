@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function ()
@@ -9,11 +10,11 @@ Route::get('/', function ()
 
 Route::get('/articles', 'ArticlesController@index')->name('articles.index');
 Route::get('/articles/create', 'ArticlesController@create')->name('articles.create');
-Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
+Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show')->middleware('permission:test.article.show');
 Route::post('/articles', 'ArticlesController@store')->name('articles.store');
-Route::get('/articles/{article}/edit', 'ArticlesController@edit')->name('articles.edit');
+Route::get('/articles/{article}/edit', 'ArticlesController@edit')->name('articles.edit')->middleware('permission:test.article.edit');
 Route::put('/articles/{article}', 'ArticlesController@update')->name('articles.update');
-Route::delete('/articles/{article}', 'ArticlesController@destroy')->name('articles.destroy');
+Route::delete('/articles/{article}', 'ArticlesController@destroy')->name('articles.destroy')->middleware('permission:test.article.edit');
 
 Route::resource('tags', 'TagController');
 Route::resource('articles.tags', 'ArticleTagController');
