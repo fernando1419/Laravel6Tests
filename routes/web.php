@@ -2,10 +2,22 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function ()
 {
 	return view('layout');
+});
+
+Route::get('/mail', function ()
+{
+	Mail::raw('Email test!', function ($message)
+	{
+		$message->to('hermosasalta@gmail.com')
+				->subject('Hi, testing sending email from laravel');
+	});
+
+	return 'Email Sent!';
 });
 
 Route::get('/articles', 'ArticlesController@index')->name('articles.index');
