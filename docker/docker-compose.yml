@@ -4,7 +4,7 @@ services:
 
     php7-fpm:
         build:
-            context: ../../docker-images-sources/php7-fpm
+            context: ../../docker-images-sources/php73-fpm
         container_name: php-fpm-project6
         image: my-images/php73-fpm-alpine:0.1
         restart: always
@@ -18,7 +18,7 @@ services:
 
     nginx:
         build:
-            context: ../../docker-images-sources/nginx
+            context: ../../docker-images-sources/nginx117
         container_name: nginx-project6
         env_file: .env
         image: my-images/nginx117-alpine:0.1 ## Alpine Nginx 1.17
@@ -33,8 +33,8 @@ services:
             - php7-fpm
 
     postgresql:
-        build:
-            context: ../../docker-images-sources/postgresql12
+        # build:
+        #     context: ../../docker-images-sources/postgresql11
         container_name: postgresql-project6
         image: my-images/postgresql12-alpine:0.1
         environment:
@@ -51,10 +51,8 @@ services:
 
 networks:
     frontEnd-network:
-        name: frontEnd # available with docker-compose 1.18, using the new "name" parameter to networks
         driver: bridge
     backEnd-network:
-        name: backEnd # available with docker-compose 1.18, using the new "name" parameter to networks
         driver: bridge
 
 volumes:
